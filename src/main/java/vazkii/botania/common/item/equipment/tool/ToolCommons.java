@@ -10,6 +10,7 @@
  */
 package vazkii.botania.common.item.equipment.tool;
 
+import com.gamerforea.eventhelper.util.EventUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
@@ -76,6 +77,10 @@ public final class ToolCommons {
 
 		if(block != null && blk != block)
 			return;
+
+		if (EventUtils.cantBreak(player,x, y, z)){
+			return;
+		}
 
 		Material mat = world.getBlock(x, y, z).getMaterial();
 		if(!world.isRemote && blk != null && !blk.isAir(world, x, y, z) && blk.getPlayerRelativeBlockHardness(player, world, x, y, z) > 0) {

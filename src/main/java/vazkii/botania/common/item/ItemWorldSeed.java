@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.FakePlayer;
 import vazkii.botania.common.Botania;
 import vazkii.botania.common.core.helper.MathHelper;
 import vazkii.botania.common.lib.LibItemNames;
@@ -33,8 +34,11 @@ public class ItemWorldSeed extends ItemMod {
 			player.rotationYaw = 0F;
 			player.setPositionAndUpdate(coords.posX + 0.5, coords.posY + 1.6, coords.posZ + 0.5);
 
-			while(!world.getCollidingBoundingBoxes(player, player.boundingBox).isEmpty())
-				player.setPositionAndUpdate(player.posX, player.posY + 1, player.posZ);
+			if (!(player instanceof FakePlayer)) {
+				while (!world.getCollidingBoundingBoxes(player, player.boundingBox).isEmpty()) {
+					player.setPositionAndUpdate(player.posX, player.posY + 1.0D, player.posZ);
+				}
+			}
 
 			world.playSoundAtEntity(player, "mob.endermen.portal", 1F, 1F);
 			for(int i = 0; i < 50; i++)

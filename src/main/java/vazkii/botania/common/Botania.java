@@ -10,12 +10,14 @@
  */
 package vazkii.botania.common;
 
+import org.apache.logging.log4j.Logger;
 import vazkii.botania.common.core.handler.IMCHandler;
 import vazkii.botania.common.core.handler.ManaNetworkHandler;
 import vazkii.botania.common.core.proxy.CommonProxy;
 import vazkii.botania.common.integration.coloredlights.ILightHelper;
 import vazkii.botania.common.integration.coloredlights.LightHelperColored;
 import vazkii.botania.common.integration.coloredlights.LightHelperVanilla;
+import vazkii.botania.common.integration.eventhelper.ModHookEventHelper;
 import vazkii.botania.common.lib.LibMisc;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -45,6 +47,9 @@ public class Botania {
 
 	public static ILightHelper lightHelper;
 
+	public static Logger logger;
+
+
 	@Instance(LibMisc.MOD_ID)
 	public static Botania instance;
 
@@ -53,6 +58,7 @@ public class Botania {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		logger = event.getModLog();
 		gardenOfGlassLoaded = Loader.isModLoaded("GardenOfGlass");
 
 		thaumcraftLoaded = Loader.isModLoaded("Thaumcraft");
@@ -65,6 +71,8 @@ public class Botania {
 		lightHelper = coloredLightsLoaded ? new LightHelperColored() : new LightHelperVanilla();
 
 		proxy.preInit(event);
+
+		ModHookEventHelper.initialize();
 	}
 	@EventHandler
 	public void init(FMLInitializationEvent event) {

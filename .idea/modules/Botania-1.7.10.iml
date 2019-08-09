@@ -123,6 +123,15 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="Gradle: EventHelper-1.7.10-1.11">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../libs/EventHelper-1.7.10-1.11.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="Gradle: ForgeMultipart-1.7.10-1.2.0.345-universal">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../libs/ForgeMultipart-1.7.10-1.2.0.345-universal.jar!/" />
